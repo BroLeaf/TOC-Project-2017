@@ -1,8 +1,6 @@
-# TOC Project 2017
+# 讓三餐不無聊bot
 
-Template Code for TOC Project 2017
-
-A telegram bot based on a finite state machine
+可以幫你決定三餐，甚至幫你找、推薦音樂給你聽
 
 ## Setup
 
@@ -45,17 +43,45 @@ python3 app.py
 ![fsm](./img/show-fsm.png)
 
 ## Usage
-The initial state is set to `user`.
 
-Every time `user` state is triggered to `advance` to another state, it will `go_back` to `user` state after the bot replies corresponding message.
+一開始進入 `user` 後會馬上跳到 `choose`，不用任何input，也不會跳回來。
+當到達 `search` or `recommend` 給完結果就會直接跳回 `choose`
 
-* user
-	* Input: "go to state1"
-		* Reply: "I'm entering state1"
+* choose	
+在這個state會跟據你輸入哪一餐
+來推薦你要吃什麼
+如果不想吃東西也可以聽聽想要的音樂
+	* Input: "吃早餐" 進入 `breakfast`
+		* Reply: 會回覆 黑色香蕉 加上 他的菜單
 
-	* Input: "go to state2"
-		* Reply: "I'm entering state2"
+	* Input: "吃午餐" 進入 `lunch`
+		* Reply: 會回覆 麥當勞 加上 他的菜單
+
+	* Input: "吃晚餐" 進入 `dinner`
+		* Reply: 會回覆 肯得基 加上 他的菜單
+
+	* Input: "聽音樂" 進入 `satisfied`
+		* Reply: 會回覆 要搜尋還是推薦
+
+* breakfast, lunch, dinner
+只吃東西一定會太無聊
+所以還有這個固定的模式 就是讓你聽音樂啦~
+	* Input: "飽了" or "聽音樂" 進入 `satisfied`
+		* Reply: 會回覆 要搜尋還是推薦
+
+* satisfied
+如果要聽音樂
+可以輸入關鍵字bot會去youtube幫你找
+或是輸入 推薦 來獲得很讚的內容
+但如果不想聽 直接輸入 不要 就可以回到一開始選吃或聽的地方了
+	* Input: "推薦" 進入 `recommend`
+		* Reply: 固定回覆，會給 gfriend 的 youtube 聯結 （超讚ㄉ）
+
+	* Input: "不要" 進入（回到） `choose`
+		* Reply: 會問你要吃還是聽音樂
+	
+	* Input: 除了 "推薦" 和 "不要" 都會進入 `search`
+		* Reply: 會直接把input丟到youtube搜尋 然後給超聯結
 
 
-## Author
-[Lee-W](https://github.com/Lee-W)
+
