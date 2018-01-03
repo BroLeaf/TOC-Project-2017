@@ -6,83 +6,39 @@ from flask import Flask, request, send_file
 
 from fsm import TocMachine
 
-API_TOKEN = '510623477:AAEjEtCeCohX8B0N5PbqMRX9ixYkHlOciP0'
-WEBHOOK_URL = 'https://bc79b51b.ngrok.io/hook'
+
+API_TOKEN = 'Your Telegram API Token'
+WEBHOOK_URL = 'Your Webhook URL'
 
 app = Flask(__name__)
 bot = telegram.Bot(token=API_TOKEN)
 machine = TocMachine(
     states=[
         'user',
-        'choose',
-        'breakfast',
-        'lunch',
-        'dinner',
-        'satisfied',
-        'search',
-        'recommend'
+        'state1',
+        'state2'
     ],
     transitions=[
         {
             'trigger': 'advance',
             'source': 'user',
-            'dest': 'choose',
+            'dest': 'state1',
+            'conditions': 'is_going_to_state1'
         },
         {
             'trigger': 'advance',
-            'source': 'choose',
-            'dest': 'breakfast',
-            'conditions': 'is_going_to_breakfast'
-        },
-        {
-            'trigger': 'advance',
-            'source': 'choose',
-            'dest': 'lunch',
-            'conditions': 'is_going_to_lunch'
-        },
-        {
-            'trigger': 'advance',
-            'source': 'choose',
-            'dest': 'dinner',
-            'conditions': 'is_going_to_dinner'
-        },
-        {
-            'trigger': 'advance',
-            'source': [
-                'choose',
-                'breakfast',
-                'lunch',
-                'dinner'
-            ],
-            'dest': 'satisfied',
-            'conditions': 'is_going_to_satisfied'
-        },
-        {
-            'trigger': 'advance',
-            'source': 'satisfied',
-            'dest': 'recommend' ,
-            'conditions': 'is_going_to_recommend'
-        },
-        {
-            'trigger': 'advance',
-            'source': 'satisfied',
-            'dest': 'search',
-            'conditions': 'is_going_to_search'
-        },
-        {
-            'trigger': 'advance',
-            'source': 'satisfied',
-            'dest': 'choose',
-            'conditions': 'is_going_to_choose'
+            'source': 'user',
+            'dest': 'state2',
+            'conditions': 'is_going_to_state2'
         },
         {
             'trigger': 'go_back',
             'source': [
-                'search',
-                'recommend'
+                'state1',
+                'state2'
             ],
-            'dest': 'choose',
-        },
+            'dest': 'user'
+        }
     ],
     initial='user',
     auto_transitions=False,
