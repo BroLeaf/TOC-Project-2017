@@ -52,11 +52,11 @@ python3 app.py
 當到達 `search` or `recommend` 給完結果就會直接跳回 `choose`
 
 * choose	
-在這個state會跟據你輸入哪一餐
+	在這個state會跟據你輸入哪一餐
 
-來推薦你要吃什麼
+	來推薦你要吃什麼
 
-如果不想吃東西也可以聽聽想要的音樂
+	如果不想吃東西也可以聽聽想要的音樂
 
 	* Input: "吃早餐" 進入 `breakfast`
 		* Reply: 會回覆 黑色香蕉 加上 他的菜單
@@ -72,21 +72,21 @@ python3 app.py
 
 * breakfast, lunch, dinner
 
-只吃東西一定會太無聊
+	只吃東西一定會太無聊
 
-所以還有這個固定的模式 就是讓你聽音樂啦~
+	所以還有這個固定的模式 就是讓你聽音樂啦~
 
 	* Input: "飽了" or "聽音樂" 進入 `satisfied`
 		* Reply: 會回覆 要搜尋還是推薦
 
 * satisfied
-如果要聽音樂
+	如果要聽音樂
 
-可以輸入關鍵字bot會去youtube幫你找
+	可以輸入關鍵字bot會去youtube幫你找
 
-或是輸入 推薦 來獲得很讚的內容
+	或是輸入 推薦 來獲得很讚的內容
 
-但如果不想聽 直接輸入 不要 就可以回到一開始選吃或聽的地方了
+	但如果不想聽 直接輸入 不要 就可以回到一開始選吃或聽的地方了
 
 	* Input: "推薦" 進入 `recommend`
 		* Reply: 固定回覆，會給 gfriend 的 youtube 聯結 （超讚ㄉ）
