@@ -1,13 +1,16 @@
 # 讓你三餐不無聊bot
 
-可以幫你決定三餐，甚至幫你找、推薦音樂給你聽
+可以幫你決定三餐，給菜單讓你參考。
+甚至幫你找、推薦音樂給你聽喔~。
 
 ## Setup
 
 ### Prerequisite
+
 * Python 3
 
 #### Install Dependency
+
 ```sh
 pip install -r requirements.txt
 ```
@@ -45,12 +48,16 @@ python3 app.py
 ## Usage
 
 一開始進入 `user` 後會馬上跳到 `choose`，不用任何input，也不會跳回來。
+
 當到達 `search` or `recommend` 給完結果就會直接跳回 `choose`
 
 * choose	
 在這個state會跟據你輸入哪一餐
+
 來推薦你要吃什麼
+
 如果不想吃東西也可以聽聽想要的音樂
+
 	* Input: "吃早餐" 進入 `breakfast`
 		* Reply: 會回覆 黑色香蕉 加上 他的菜單
 
@@ -64,16 +71,23 @@ python3 app.py
 		* Reply: 會回覆 要搜尋還是推薦
 
 * breakfast, lunch, dinner
+
 只吃東西一定會太無聊
+
 所以還有這個固定的模式 就是讓你聽音樂啦~
+
 	* Input: "飽了" or "聽音樂" 進入 `satisfied`
 		* Reply: 會回覆 要搜尋還是推薦
 
 * satisfied
 如果要聽音樂
+
 可以輸入關鍵字bot會去youtube幫你找
+
 或是輸入 推薦 來獲得很讚的內容
+
 但如果不想聽 直接輸入 不要 就可以回到一開始選吃或聽的地方了
+
 	* Input: "推薦" 進入 `recommend`
 		* Reply: 固定回覆，會給 gfriend 的 youtube 聯結 （超讚ㄉ）
 
